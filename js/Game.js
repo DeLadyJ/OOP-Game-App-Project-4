@@ -4,16 +4,10 @@
 
  class Game {
      constructor(){
-        missed('0');
+        missed();
         phrases();
         activePhrases('null');
-        startGame(){
-            getRandomPhrase(){
-                
-            }
-        }
-
-         
-
-     }
+        startGame();
+            getRandomPhrase();
  }
+}

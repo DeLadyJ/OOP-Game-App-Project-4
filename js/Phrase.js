@@ -7,33 +7,38 @@
 class Phrase {
     constructor(phrase){
     }
-        addPhraseToDisplay(){
+        addPhraseToDisplay(){ 
     
     //Get phrase then displays on screen
-    for (let i = 0; i < this.phrase.length; i++){
-        this.phrase[i] = "";
-   //const placeholder = document.createElement(li);
-   //loops through phrase to check for letter or space and adds a letter or space class
-           //loops through phrase to check for letter or space and adds a letter or space class
-       //const placeholder = document.createElement(li);
-       //let li = document.createElement('li');
-           //let letter = (this.phrase[1];  'hide letter ${this.phrase[1]}';
-           //placeHolder.appendChild(placeHolder);
-           if ( letter === "") {
-             li.className = 'hide space'; //gives the space class if there is a li with a space
-           } else {
-             li.className = 'hide letter ${letter}' ; //gives the letter class if li has a letter
-           }
-           li.textContent = 'letter';
-           phraseDiv.appendChild(li);
-    }
-  }
-        
+        let array = this.phrase.split('')
+        let str = ''
+        //console.log(array);
+
+      //check for letter or space and adds a letter or space class
+        array.forEach(function(letter) {
+          if (letter === " ") {
+            str += '<li class="space"> </li>'
+          } else {
+            str += `<li class="hide letter ${letter}">${letter}</li>`
+          }
+      //console.log(str);
+        })
+
+        $('#phrase ul').append(str);
+      }
+  
         checkLetter(){
-
+     // Checks to see if the letter selected by the player matches a letterin the phrase.
+        return this.phrase.includes(letter);
         };
-        showMatchedLetter(){
 
+        showMatchedLetter(){
+          let li = document.getElementsByClassName(letter);
+          for (let i = 0; i < li.length; i++) {
+            li[i].className = `show letter ${letter}`;
+            $('li').className += ' show';
+            $('li').className -= ' hide';
+          }
         };  
     
 };

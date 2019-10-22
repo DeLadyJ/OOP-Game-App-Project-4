@@ -6,7 +6,12 @@
 
 class Phrase {
     constructor(phrase){
+      this.phrase = phrase;
     }
+
+    /* adds letter placeHolders to the display when the game starts
+  then displays phrase on game board */
+
         addPhraseToDisplay(){ 
     
     //Get phrase then displays on screen

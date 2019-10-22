@@ -32,12 +32,12 @@ class Phrase {
         $('#phrase ul').append(str);
       }
   
-        checkLetter(){
+        checkLetter(letter){
      // Checks to see if the letter selected by the player matches a letterin the phrase.
         return this.phrase.includes(letter);
         };
 
-        showMatchedLetter(){
+        showMatchedLetter(letter){
           let li = document.getElementsByClassName(letter);
           for (let i = 0; i < li.length; i++) {
             li[i].className = `show letter ${letter}`;

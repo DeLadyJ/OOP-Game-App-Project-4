@@ -4,14 +4,14 @@
 
  class Game {
      constructor(){
-        this.misses = 0;
+        this.missed = 0;
         
         this.phrases = [
-          new phrase("when they go low we go high"),
-          new phrase("i wish my wallet came with refills"),
-          new phrase("three little birds"),
-          new phrase("your soul is your light"),
-          new phrase("your voice can change the world")
+          new Phrase("when they go low we go high"),
+          new Phrase("i wish my wallet came with refills"),
+          new Phrase("three little birds"),
+          new Phrase("your soul is your light"),
+          new Phrase("your voice can change the world")
         ];
         this.activePhrase = null;
        }
@@ -24,9 +24,9 @@
 
          startGame(){
           //hide the element with the id of overlay
-          document.getElementById('overlay').style.display = 'none';
-          // const overlay = document.getElementById('overlay')
-          // overlay.style.display = 'none';
+          //document.getElementById('overlay').style.display = 'none';
+          const overlay = document.getElementById('overlay')
+          overlay.style.display = 'none';
 
             /**gets a random phrase then displays the phrase on the screen*/
           this.activePhrase = this.getRandomPhrase();

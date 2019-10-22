@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * app.js */
 
- let game;
+ //let game;
 
  document.querySelector('#btn__reset').addEventListener('click', function() {
     game = new Game ();

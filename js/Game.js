@@ -10,8 +10,8 @@
           new phrase("when they go low we go high"),
           new phrase("i wish my wallet came with refills"),
           new phrase("three little birds"),
-          new phrase("those who do not listen shall feel"),
-          new phrase("")
+          new phrase("your soul is your light"),
+          new phrase("your voice can change the world")
         ];
         this.activePhrase = null;
        }
@@ -25,6 +25,8 @@
          startGame(){
           //hide the element with the id of overlay
           document.getElementById('overlay').style.display = 'none';
+          // const overlay = document.getElementById('overlay')
+          // overlay.style.display = 'none';
 
             /**gets a random phrase then displays the phrase on the screen*/
           this.activePhrase = this.getRandomPhrase();
@@ -32,20 +34,24 @@
           new Phrase(phrase);
           }
 
-          handleInteraction (){
-
-            phrase.showMatchedLetter(key); //{
-              if (this.checkForWin( ) === 'win') {
-                this.gameOver('win');
-              } else {
-                if (phrase.checkLetter(key.innerText) === 'lose') {
-                this.removeLife();
-                if (this.missed === 5) {
-                  this.gameOver('lose');
-                }
+          handleInteraction (button){
+            button.disable = true;
+            if (this.activePhrase.checkLetter(button.innerText)) {
+              button.classList.add('chosen');
+              this.activePhrase.showMatchedLetter(button.innerText);
+            if  (this.checkForWin()) {
+              this.gameOver('win');
               }
+            } else {
+              this.removeLife();
+              if (this.missed === 5) {
+      
+              this.gameOver('lose');
+              }
+
+              }
+             
             }
-          }
       
       
           checkForWin(){
@@ -78,8 +84,11 @@
                 }
       
             gameOver() {
+              const reset = document.querySelector('.btn');
+              document.querySelector('#btn__reset').style.display = 'none';
+      
             //this method displays the original start screen overlay
-            const overlay = document.getElementById('overlay');
+            document.getElementById('overlay').style.display = 'show';
             const message = document.getElementById('game-over-message');
             overlay.style.display = '';
       
@@ -89,16 +98,31 @@
                if (this.checkForWin() === true) {
            
               overlay.className = 'win';
-            
               message.innerText = 'You Win';
             } else {
-
               overlay.className = 'lose';
               message.innerText = 'You Lose';
             }
-      
           //this.resetGame();
-      
-      
           }
+
+          resetGame(){
+
+            let li = [];
+             li = document.querySelectorAll('.letter');
+             let spaces = [];
+             spaces = document.querySelectorAll('.space');
+             li.forEach(l => l.parentNode.removeChild(l));
+             // Remove phrase placeholders from gameboard
+             spaces.forEach(space => space.parentNode.removeChild(space));
+             // Remove spaces from gameboard
+             let char = [];
+             char = document.querySelectorAll('.key');
+             char.forEach(key => {       // Enable all keys
+                 char.removeAttribute("disabled");
+                 char.className = "key";
+             });
+            }
+
+
  }

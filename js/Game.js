@@ -2,6 +2,9 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+const btn__reset = document.querySelector('#btn__reset');
+const char = document.querySelectorAll('.key');
+const spaces = document.querySelectorAll('.space');
  class Game {
      constructor(){
         this.missed = 0;
@@ -32,10 +35,18 @@
           this.activePhrase = this.getRandomPhrase();
           this.activePhrase.addPhraseToDisplay();
           new Phrase(phrase);
+
+          function btn__reset (){
+            if (btn__reset == 'startGame') {
+              btn__reset == 'reset button'
+            } else {
+              btn__reset == startGame
+            }
+          }
           }
 
           handleInteraction (button){
-            button.disable = true;
+            //button.disable = true;
             if (this.activePhrase.checkLetter(button.innerText)) {
               button.classList.add('chosen');
               this.activePhrase.showMatchedLetter(button.innerText);
@@ -45,14 +56,10 @@
             } else {
               this.removeLife();
               if (this.missed === 5) {
-      
               this.gameOver('lose');
               }
-
-              }
-             
             }
-      
+          }
       
           checkForWin(){
             /**This method checks to see if the player has revealed all of the letters in the active phrase.
@@ -84,8 +91,8 @@
                 }
       
             gameOver() {
-              const reset = document.querySelector('.btn');
-              document.querySelector('#btn__reset').style.display = 'none';
+             // const reset = document.querySelector('.btn');
+              // document.querySelector('#btn__reset').style.display = 'none';
       
             //this method displays the original start screen overlay
             document.getElementById('overlay').style.display = 'show';
@@ -111,13 +118,13 @@
             let li = [];
              li = document.querySelectorAll('.letter');
              let spaces = [];
-             spaces = document.querySelectorAll('.space');
+            //  spaces = document.querySelectorAll('.space');
              li.forEach(l => l.parentNode.removeChild(l));
              // Remove phrase placeholders from gameboard
              spaces.forEach(space => space.parentNode.removeChild(space));
              // Remove spaces from gameboard
              let char = [];
-             char = document.querySelectorAll('.key');
+             //char = document.querySelectorAll('.key');
              char.forEach(key => {       // Enable all keys
                  char.removeAttribute("disabled");
                  char.className = "key";

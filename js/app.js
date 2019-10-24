@@ -3,19 +3,13 @@
  * app.js */
 //const qwerty = document.querySelector('#qwerty');
 
- let game;
+const button = document.getElementById('qwerty');
+ const game = new game;
+
  btn__reset.addEventListener('click', ()  =>{
-    game = new Game ();
+    game.resetGame ();
     game.startGame();
  });
  //.addEventListener('click', function() {
  //document.querySelector('#startGame').addEventListener('click', function() {
   
-
-
-    
-    // document.querySelector('#qwerty').addEventListener('click', e => {    // When any letter is clicked, handleInteractions will be called
-    //    if(e.target.className === 'key') {
-    //        game.handleInteraction(e.target);
-    //    }
-    // })

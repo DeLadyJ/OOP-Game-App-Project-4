@@ -2,9 +2,12 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-const btn__reset = document.querySelector('#btn__reset');
+const overlay = document.getElementById('overlay')
+const reset = document.querySelector('.btn');
 const char = document.querySelectorAll('.key');
-const spaces = document.querySelectorAll('.space');
+const btn__reset = document.querySelector('#btn__reset');
+
+
  class Game {
      constructor(){
         this.missed = 0;
@@ -27,29 +30,31 @@ const spaces = document.querySelectorAll('.space');
 
          startGame(){
           //hide the element with the id of overlay
-          //document.getElementById('overlay').style.display = 'none';
-          const overlay = document.getElementById('overlay')
           overlay.style.display = 'none';
-
-            /**gets a random phrase then displays the phrase on the screen*/
-          this.activePhrase = this.getRandomPhrase();
-          this.activePhrase.addPhraseToDisplay();
-          new Phrase(phrase);
+          const randomPhrase = this.getRandomPhrase().phrase;
+          console.log(randomPhrase);
+      /**gets a random phrase then displays the phrase on the screen*/
+          this.activePhrase = new Phrase(randomPhrase);
+          this.activePhrase.addPhraseToDisplay(this.getRandomPhrase().phrase);
 
           function btn__reset (){
             if (btn__reset == 'startGame') {
               btn__reset == 'reset button'
             } else {
-              btn__reset == startGame
+              btn__reset == 'startGame'
             }
           }
+          function addEventListenerToCharacter(characterHtMLElement) {
+            characterHtMLElement.addEventListener('click', game.handleInteraction)
+          }
+          char.forEach(addEventListenerToCharacter);
           }
 
-          handleInteraction (button){
+          handleInteraction (event){
             //button.disable = true;
-            if (this.activePhrase.checkLetter(button.innerText)) {
+            if (this.activePhrase.checkLetter(letter)) {
               button.classList.add('chosen');
-              this.activePhrase.showMatchedLetter(button.innerText);
+              this.activePhrase.showMatchedLetter(letter);
             if  (this.checkForWin()) {
               this.gameOver('win');
               }
@@ -64,8 +69,10 @@ const spaces = document.querySelectorAll('.space');
           checkForWin(){
             /**This method checks to see if the player has revealed all of the letters in the active phrase.
             */
-            const allLetters = document.getElementsByClassName('hide') ;
+           const allLetters = document.querySelectorAll('.letter').length;
+           const validLetters = document.querySelectorAll('.show').length;
             //console.log(allLetters);
+            return allLetters === validLetters
       
             if (allLetters.length === 0) {
               return true;
@@ -84,25 +91,23 @@ const spaces = document.querySelectorAll('.space');
               this.missed += 1;
               //replacing one of the `liveHeart.png` images with a `lostHeart.png` image
               //and increments the `missed` property
-              if (this.missed === 5){
-                  this.gameOver();
-              }
+              // if (this.missed === 5){
+              //     this.gameOver();
+              // }
       
                 }
       
-            gameOver() {
+            gameOver(outcome) {
              // const reset = document.querySelector('.btn');
               // document.querySelector('#btn__reset').style.display = 'none';
       
             //this method displays the original start screen overlay
-            document.getElementById('overlay').style.display = 'show';
             const message = document.getElementById('game-over-message');
             overlay.style.display = '';
-      
             //will display win or lose CSS class message depending on the outcome of the
-            //game, replaces the overlay’s `start` CSS class
+             //game, replaces the overlay’s `start` CSS class with 'reset' class
       
-               if (this.checkForWin() === true) {
+             if (outcome === 'win') {
            
               overlay.className = 'win';
               message.innerText = 'You Win';
@@ -111,26 +116,29 @@ const spaces = document.querySelectorAll('.space');
               message.innerText = 'You Lose';
             }
           //this.resetGame();
-          this.activePhrase = null;
+          //this.activePhrase = null;
           }
 
           resetGame(){
-            
-
             let li = [];
              li = document.querySelectorAll('.letter');
              let spaces = [];
-            //  spaces = document.querySelectorAll('.space');
+              spaces = document.querySelectorAll('.space');
              li.forEach(l => l.parentNode.removeChild(l));
              // Remove phrase placeholders from gameboard
              spaces.forEach(space => space.parentNode.removeChild(space));
              // Remove spaces from gameboard
              let char = [];
-             //char = document.querySelectorAll('.key');
+             char = document.querySelectorAll('.key');
              char.forEach(key => {       // Enable all keys
                  char.removeAttribute("disabled");
-                 char.className = "key";
+                 char.className = "char";
              });
+             let image = [];
+              image = document.querySelectorAll('img');
+              image.forEach(img => {
+                  img.src= 'images/liveHeart.png';                   // Restore hearts
+              });
             }
 
 

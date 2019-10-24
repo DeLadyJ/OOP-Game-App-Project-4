@@ -4,7 +4,7 @@
 //const qwerty = document.querySelector('#qwerty');
 
  let game;
- document.querySelector('#btn__reset').addEventListener('click', function() {
+ btn__reset.addEventListener('click', ()  =>{
     game = new Game ();
     game.startGame();
  });

@@ -111,9 +111,11 @@ const spaces = document.querySelectorAll('.space');
               message.innerText = 'You Lose';
             }
           //this.resetGame();
+          this.activePhrase = null;
           }
 
           resetGame(){
+            
 
             let li = [];
              li = document.querySelectorAll('.letter');
